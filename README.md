@@ -27,3 +27,6 @@ anywAI-web/
 │       ├── mascot.png
 │       ├── ex.png              # 축제 예시 이미지
 │       └── festival.png        # 축제 포스터 예시 이미지
+
+브랜치 테스트용용
+으아아
