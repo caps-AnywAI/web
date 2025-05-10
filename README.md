@@ -1,7 +1,7 @@
-# AnywAI - 축제기반 여행지 추천 웹 서비스 (프론트엔드)
+<details>
+<summary>📁 프로젝트 구조 보기</summary>
 
-## 📁 프로젝트 구조
-
+```plaintext
 anywAI-web/
 ├── index.html                  # 메인 페이지
 ├── pages/
@@ -25,5 +25,5 @@ anywAI-web/
 │   │   └── login.css           # 로그인 페이지 전용 CSS
 │   └── images/
 │       ├── mascot.png
-│       ├── ex.png              #축제 예시 이미지
-│       └── festival.png        #예시 이미지
+│       ├── ex.png              # 축제 예시 이미지
+│       └── festival.png        # 축제 포스터 예시 이미지
