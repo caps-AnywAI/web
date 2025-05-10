@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>AnywAI - 축제 추천 메인페이지</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#f5f9ff] min-h-screen font-sans">
+  <!-- 상단 네비게이션 -->
+  <header class="bg-[#58abf7] text-white px-10 py-4 flex justify-between items-center">
+    <div class="text-2xl font-extrabold">AnywAI</div>
+    <nav class="flex items-center gap-6 text-sm">
+      <a href="#" class="hover:underline">Review</a>
+      <a href="#" class="hover:underline">Search</a>
+      <a href="#" class="hover:underline">Bookmark</a>
+      <a href="pages/mypage.html" class="flex items-center gap-1 text-white hover:underline">
+        <span class="text-sm">마이페이지</span>
+      </a>
+      <a href="pages/login.html">
+        <button id="login-btn" class="bg-white text-[#58abf7] px-4 py-1 rounded-full font-semibold text-sm shadow">Log In</button>
+      </a>
+      </nav>
+    </nav>
+  </header>
+
+  <!-- 메인 텍스트 -->
+  <section class="text-center py-24">
+    <p class="text-lg text-gray-600">당신이 있는 곳 어디든</p>
+    <h1 class="text-3xl font-extrabold text-gray-800 mt-2">그곳이 축제입니다</h1>
+  </section>
+
+  <!-- 필터 입력 영역 -->
+  <section class="flex justify-center mb-24">
+    <div class="bg-white flex items-center rounded-full shadow-md overflow-hidden divide-x divide-gray-200">
+      <div class="flex items-center gap-2 px-4 py-3">
+        <span class="text-xl">📅</span>
+        <input type="date" class="bg-transparent text-sm focus:outline-none cursor-pointer" />
+      </div>
+      <input type="text" placeholder="지역을 선택하세요." class="px-4 py-3 text-sm w-72 focus:outline-none" />
+      <button onclick="goToBalance()" class="bg-[#58abf7] hover:bg-[#3c9ae7] text-white text-sm font-semibold px-6 py-3 h-full">
+        AI 추천받기
+      </button>
+    </div>
+  </section>
+
+  <!-- 축제 카드 리스트 -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-10 pb-32 max-w-6xl mx-auto">
+    <!-- 카드 반복 예시 -->
+    <div class="bg-white p-6 rounded-2xl shadow-md text-center">
+      <img src="assets/images/festival.png" alt="축제 포스터" class="rounded-full mb-6 border w-40 h-40 mx-auto" />
+      <button onclick="goToDetail()" class="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-md text-base">바로가기 →</button>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow-md text-center">
+      <img src="assets/images/festival.png" alt="축제 포스터" class="rounded-full mb-6 border w-40 h-40 mx-auto" />
+      <button onclick="goToDetail()" class="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-md text-base">바로가기 →</button>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow-md text-center">
+      <img src="assets/images/festival.png" alt="축제 포스터" class="rounded-full mb-6 border w-40 h-40 mx-auto" />
+      <button onclick="goToDetail()" class="bg-gray-100 hover:bg-gray-200 px-6 py-2 rounded-md text-base">바로가기 →</button>
+    </div>
+  </section>
+  <script src="js/auth.js"></script>
+  <script src="js/index.js"></script>
+  
+  <script>
+  function goToDetail() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (isLoggedIn === "true") {
+      location.href = "pages/detail.html";
+    } else {
+      alert("로그인 후 이용 가능합니다.");
+      location.href = "pages/login.html";
+    }
+        }
+    </script>
+</body>
+</html>

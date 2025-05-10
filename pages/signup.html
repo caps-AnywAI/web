@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="../assets/css/signup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <div class="signup-box">
+      <div class="header">
+        <div class="logo">AnywAI</div>
+        <hr>
+      </div>
+
+      <div class="content">
+        <div class="left">
+          <h2>Create an<br>account</h2>
+          <img src="../assets/images/mascot.png" alt="캐릭터">
+        </div>
+
+        <div class="right">
+          <div class="input-group">
+            <input type="text" id="user-id" placeholder="아이디">
+            <button class="check-btn">중복확인</button>
+          </div>
+          <div class="input-row">
+            <input type="password" id="user-password" placeholder="비밀번호">
+            <input type="password" id="user-password-confirm" placeholder="비밀번호 확인">
+          </div>
+          <input type="text" id="username" placeholder="이름">
+          <input type="text" id="phone" placeholder="핸드폰">
+
+          <button class="submit-btn" id="signup-btn">회원가입</button>
+
+          <div class="checkbox">
+            <input type="checkbox" id="agree">
+            <label for="agree">개인정보 수집 및 이용에 동의합니다.</label>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/signup.js"></script>
+</body>
+</html>

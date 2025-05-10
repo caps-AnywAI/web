@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자연 선호도 추천</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .step-bar div {
+      flex: 1;
+      height: 6px;
+      background-color: #e0e7ff;
+      border-radius: 9999px;
+    }
+    .step-bar .active {
+      background-color: #60a5fa;
+    }
+  </style>
+</head>
+<body class="bg-white flex flex-col items-center justify-start min-h-screen py-10 px-8">
+
+  <!-- 상단 로고 -->
+  <div class="w-full flex justify-end mb-4">
+    <a href="../index.html"> <h1 class="text-xl font-bold text-[#60a5fa]">AnywAI</h1></a>
+  </div>
+
+  <!-- 진행바 -->
+  <div class="w-full max-w-5xl flex justify-center gap-2 mb-8 step-bar">
+    <div id="bar-0"></div>
+    <div id="bar-1"></div>
+    <div id="bar-2"></div>
+    <div id="bar-3"></div>
+    <div id="bar-4"></div>
+    <div id="bar-5"></div>
+  </div>
+
+  <!-- 질문 영역 -->
+  <div id="question-container" class="w-full max-w-5xl text-center">
+    <!-- JavaScript에서 렌더링 -->
+  </div>
+
+  <!-- 하단 버튼 영역 -->
+  <div class="w-full max-w-5xl flex justify-center gap-4 mt-12">
+    <button id="back" class="border px-4 py-2 text-sm rounded-md bg-gray-100 hover:bg-gray-200">&lt;</button>
+    <button id="skip" class="px-6 py-2 text-sm rounded-md text-white font-semibold bg-[#60a5fa] hover:bg-[#3b82f6]">건너뛰기</button>
+  </div>
+
+  <script src="../js/balance.js"></script>
+
+</body>
+</html>

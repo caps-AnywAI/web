@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>추천 결과 - AnywAI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#eaf3ff] font-sans py-10 px-6 min-h-screen">
+
+  <!-- 상단 로고 -->
+  <header class="w-full flex justify-end mb-6">
+    <h1 class="text-xl font-bold text-[#60a5fa]">AnywAI</h1>
+  </header>
+
+  <!-- 결과 카드 -->
+  <div class="max-w-4xl mx-auto bg-white rounded-2xl p-10 shadow-lg text-center">
+    <h2 class="text-2xl font-bold text-[#60a5fa] mb-6">🎉 당신을 위한 맞춤 추천 결과</h2>
+
+    <!-- 선택된 응답 목록 -->
+    <ul id="answer-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 text-base mb-8">
+      <!-- 자바스크립트로 채워짐 -->
+    </ul>
+
+    <!-- 추천 요약 카드 -->
+    <div id="recommendation" class="bg-[#add6ff] text-white rounded-xl p-6 shadow-md mb-10">
+      <h3 class="text-xl font-semibold mb-2">추천 유형:</h3>
+      <p id="summary-text" class="text-lg font-light">분석 중...</p>
+    </div>
+
+    <!-- 버튼 -->
+    <div class="flex justify-center gap-4">
+      <button onclick="location.href='../index.html'"
+              class="bg-white border border-[#60a5fa] text-[#60a5fa] hover:bg-[#f0f8ff] px-6 py-2 rounded-full font-semibold">
+        홈으로
+      </button>
+      <button onclick="location.href='balance.html'"
+              class="bg-[#60a5fa] hover:bg-[#3b82f6] text-white px-6 py-2 rounded-full font-semibold">
+        다시 하기
+      </button>
+    </div>
+  </div>
+  <script src="../js/result.js"></script>
+</body>
+</html>
