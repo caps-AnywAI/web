@@ -1,5 +1,5 @@
 const loginBtn = document.getElementById("login-btn");
-const idInput = document.getElementById("user-id");
+const idInput = document.getElementById("user-name");  
 const pwInput = document.getElementById("user-password");
 
 loginBtn.addEventListener("click", function () {
@@ -11,24 +11,34 @@ loginBtn.addEventListener("click", function () {
     return;
   }
 
-  // 🔥 회원가입 정보 불러오기
-  const savedUser = JSON.parse(localStorage.getItem("tempUser"));
+  fetch(`${BASE_URL}/login`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: userId,         //  API 명세상 name
+      password: userPw
+    })
+  })
+    .then(async (response) => {
+      const token = response.headers.get("authorization"); // Bearer ~~~
+      const result = await response.json();
 
-  // 🔍 정보 없는 경우
-  if (!savedUser) {
-    alert("회원가입된 사용자가 없습니다.");
-    return;
-  }
+      if (!response.ok || !result.success || !token) {
+        alert("로그인 실패: 아이디 또는 비밀번호가 잘못되었습니다.");
+        return;
+      }
 
-  // ✅ 아이디/비밀번호 일치 확인
-  if (userId === savedUser.userId && userPw === savedUser.userPw) {
-    alert("로그인 성공!");
+      // ✅ 토큰과 사용자 ID 저장
+      localStorage.setItem("authToken", token);
+      localStorage.setItem("loginUserId", userId);
 
-    localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("userId", userId);
-
-    location.href = "../index.html";
-  } else {
-    alert("아이디 또는 비밀번호가 올바르지 않습니다.");
-  }
+      alert("로그인 성공!");
+      location.href = "../index.html"; // 로그인 후 이동할 페이지
+    })
+    .catch((error) => {
+      console.error("로그인 중 오류:", error);
+      alert("서버 연결 실패");
+    });
 });
