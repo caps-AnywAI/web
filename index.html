@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <title>AnywAI - 축제 추천 메인페이지</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body class="bg-[#f5f9ff] min-h-screen font-sans">
   <!-- 상단 네비게이션 -->
@@ -32,11 +36,16 @@
   <!-- 필터 입력 영역 -->
   <section class="flex justify-center mb-24">
     <div class="bg-white flex items-center rounded-full shadow-md overflow-hidden divide-x divide-gray-200">
+      <!-- 날짜 입력 -->
       <div class="flex items-center gap-2 px-4 py-3">
         <span class="text-xl">📅</span>
-        <input type="date" class="bg-transparent text-sm focus:outline-none cursor-pointer" />
+        <input type="text" name="datefilter" placeholder="날짜를 입력하세요" class="text-sm focus:outline-none w-60" />
       </div>
-      <input type="text" placeholder="지역을 선택하세요." class="px-4 py-3 text-sm w-72 focus:outline-none" />
+
+      <!-- 지역 입력 -->
+      <div class="flex items-center gap-2 px-4 py-3">
+        <input type="text" placeholder="지역을 선택하세요." class="text-sm focus:outline-none w-60" />
+      </div>
       <button onclick="goToBalance()" class="bg-[#58abf7] hover:bg-[#3c9ae7] text-white text-sm font-semibold px-6 py-3 h-full">
         AI 추천받기
       </button>
@@ -73,5 +82,25 @@
     }
         }
     </script>
+    <script type="text/javascript">
+      $(function() {
+      
+        $('input[name="datefilter"]').daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                cancelLabel: 'Clear'
+            }
+        });
+      
+        $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('YYYY.MM.DD') + ' - ' + picker.endDate.format('YYYY.MM.DD'));
+        });
+      
+        $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+      
+      });
+      </script>
 </body>
 </html>
