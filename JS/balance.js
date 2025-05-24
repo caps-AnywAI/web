@@ -1,59 +1,93 @@
-// ✅ 공식 테마 기반 밸런스 게임 질문 구성
+// ✅ 사용자 선호도 질문 목록 + 이미지
 const questions = [
-  { step: 1, title: "어떤 분위기의 여행지를 선호하나요?", options: ["nature", "urban"] },
-  { step: 2, title: "당신의 여행 목적은?", options: ["healing", "activity"] },
-  { step: 3, title: "여행에서 무엇을 느끼고 싶나요?", options: ["traditional", "new"] },
-  { step: 4, title: "여행의 즐거움은?", options: ["food", "experience"] },
-  { step: 5, title: "어떤 장소가 끌리나요?", options: ["popular", "hidden"] },
-  { step: 6, title: "여행 분위기는?", options: ["quiet", "lively"] }
+  {
+    step: 1,
+    title: "더 선호하는 여행지는 무엇인가요?",
+    options: [
+      { value: "nature", label: "자연", img: "../assets/images/free-icon-national-park-7057859.png" },
+      { value: "urban",  label: "도시",   img: "../assets/images/free-icon-fireworks-13394519.png" }
+    ]
+  },
+  {
+    step: 2,
+    title: "더 선호하는 분위기는 무엇인가요?",
+    options: [
+      { value: "healing",  label: "힐링",     img: "../assets/images/free-icon-relaxing-1142699.png" },
+      { value: "activity", label: "액티비티", img: "../assets/images/free-icon-running-4721050.png" }
+    ]
+  },
+  {
+    step: 3,
+    title: "전통과 새로움 어느 쪽이 더 매력적인가요?",
+    options: [
+      { value: "traditional", label: "전통",   img: "../assets/images/free-icon-bukchon-hanok-4480645.png" },
+      { value: "new",         label: "새로움", img: "../assets/images/free-icon-smart-city-2228558.png" }
+    ]
+  },
+  {
+    step: 4,
+    title: "먹는 즐거움과 새로운 경험 중 당신의 선택은?",
+    options: [
+      { value: "food",       label: "음식",   img: "../assets/images/free-icon-dinner-3321601.png" },
+      { value: "experience", label: "경험",   img: "../assets/images/free-icon-vacation-7058066.png" }
+    ]
+  },
+  {
+    step: 5,
+    title: "모두가 아는 핫플과 당신만의 비밀 장소 중 당신의 선택은?",
+    options: [
+      { value: "popular", label: "인기",    img: "../assets/images/free-icon-popularity-9031042.png" },
+      { value: "hidden",  label: "숨겨진", img: "../assets/images/free-icon-question-3888666.png" }
+    ]
+  },
+  {
+    step: 6,
+    title: "여행에서 더 원하는 분위기는?",
+    options: [
+      { value: "quiet",  label: "고요",   img: "../assets/images/free-icon-beach-sunset-1886646.png" },
+      { value: "lively", label: "활발",   img: "../assets/images/free-icon-dance-2402478.png" }
+    ]
+  }
 ];
-
-const labelMap = {
-  nature: "자연",
-  urban: "도시",
-  healing: "힐링",
-  activity: "액티비티",
-  traditional: "전통",
-  new: "새로움",
-  food: "음식",
-  experience: "체험",
-  popular: "인기 많은",
-  hidden: "숨겨진 장소",
-  quiet: "고요한",
-  lively: "활발한"
-};
 
 let currentStep = 0;
 
+// 현재 단계 렌더링
 function renderStep() {
   const container = document.getElementById("question-container");
-  const question = questions[currentStep];
+  const q = questions[currentStep];
+
+  const optionsHTML = q.options.map(opt => `
+    <div class="bg-white hover:shadow-xl cursor-pointer rounded-2xl w-full sm:w-72 h-auto sm:h-80 flex flex-col justify-between items-center p-4 sm:p-6 border border-gray-200 hover:border-blue-400 transition"
+         onclick="selectOption('${opt.value}')">
+      <img src="${opt.img}" alt="${opt.label}" class="w-32 h-32 sm:w-48 sm:h-48 object-contain mt-2" />
+      <div class="text-lg sm:text-xl font-semibold text-gray-800 mb-2">${opt.label}</div>
+    </div>
+  `).join('');
 
   container.innerHTML = `
-    <h2 class="text-[#60a5fa] font-bold text-lg">STEP ${question.step}</h2>
-    <p class="text-base text-gray-600 mt-2 mb-10">${question.title}</p>
-    <div class="flex gap-10 justify-center">
-      ${question.options.map((opt) => `
-        <div class="bg-white hover:shadow-xl cursor-pointer rounded-2xl w-72 h-80 flex flex-col justify-center items-center text-xl font-semibold border border-gray-200 hover:border-blue-400 transition"
-             onclick="selectOption('${opt}')">
-          <span>${labelMap[opt]}</span>
-        </div>
-      `).join('')}
+    <h2 class="text-[#60a5fa] font-bold text-lg md:text-xl">STEP ${q.step}</h2>
+    <p class="text-base md:text-lg text-gray-600 mt-2 mb-8 md:mb-10">${q.title}</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-center">
+      ${optionsHTML}
     </div>
   `;
 
-  for (let i = 0; i < 6; i++) {
-    document.getElementById(`bar-${i}`).classList.toggle('active', i <= currentStep);
-  }
+  // 진행바 업데이트
+  questions.forEach((_, idx) => {
+    document.getElementById(`bar-${idx}`).classList.toggle('active', idx <= currentStep);
+  });
 }
 
-function selectOption(option) {
+// 옵션 선택 처리
+function selectOption(value) {
   const answers = JSON.parse(sessionStorage.getItem("answers")) || [];
-  answers[currentStep] = option;
+  answers[currentStep] = value;
   sessionStorage.setItem("answers", JSON.stringify(answers));
   nextStep();
 }
 
+// 다음 단계 또는 결과 처리
 function nextStep() {
   if (currentStep < questions.length - 1) {
     currentStep++;
@@ -66,8 +100,7 @@ function nextStep() {
 
     if (!userId || !token) {
       alert("로그인이 필요합니다.");
-      location.href = "login.html";
-      return;
+      return location.href = "login.html";
     }
 
     fetch(`${BASE_URL}/${userId}/themes`, {
@@ -78,18 +111,13 @@ function nextStep() {
       },
       body: JSON.stringify({ themes })
     })
-      .then(res => res.json())
-      .then(data => {
-        console.log("테마 저장 완료:", data);
-        location.href = "result.html";
-      })
-      .catch(err => {
-        console.error("테마 저장 실패:", err);
-        alert("서버와의 연결에 실패했습니다.");
-      });
+    .then(res => res.json())
+    .then(() => location.href = "result.html")
+    .catch(() => alert("서버와의 연결에 실패했습니다."));
   }
 }
 
+// 이전 단계
 function prevStep() {
   if (currentStep > 0) {
     currentStep--;
@@ -97,7 +125,8 @@ function prevStep() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+// 이벤트 바인딩 및 초기 렌더
+window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("skip").addEventListener("click", nextStep);
   document.getElementById("back").addEventListener("click", prevStep);
   renderStep();
