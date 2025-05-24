@@ -94,40 +94,41 @@ function nextStep() {
     renderStep();
   } else {
     const answers = JSON.parse(sessionStorage.getItem("answers")) || [];
+    // 중복 제거
     const themes = [...new Set(answers)];
     const userId = localStorage.getItem("loginUserId");
-    const token = localStorage.getItem("authToken");
+    const token  = localStorage.getItem("authToken");
 
     if (!userId || !token) {
       alert("로그인이 필요합니다.");
       return location.href = "login.html";
     }
 
-    fetch(`${BASE_URL}/${userId}/themes`, {
+    fetch(`${BASE_URL}/api/v1/members/${userId}/themes`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token
+        // “Bearer ” 꼭 붙여주세요
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({ themes })
     })
-    .then(res => res.json())
-    .then(() => location.href = "result.html")
-    .catch(() => alert("서버와의 연결에 실패했습니다."));
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("테마 업데이트 실패");
+      }
+      return res.json();
+    })
+    .then(({ success, message }) => {
+      if (!success) {
+        throw new Error(message || "테마 업데이트 실패");
+      }
+      // 업데이트 성공 시 결과 페이지로 이동
+      location.href = "result.html";
+    })
+    .catch(err => {
+      console.error(err);
+      alert(err.message || "서버와의 연결에 실패했습니다.");
+    });
   }
 }
-
-// 이전 단계
-function prevStep() {
-  if (currentStep > 0) {
-    currentStep--;
-    renderStep();
-  }
-}
-
-// 이벤트 바인딩 및 초기 렌더
-window.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("skip").addEventListener("click", nextStep);
-  document.getElementById("back").addEventListener("click", prevStep);
-  renderStep();
-});
