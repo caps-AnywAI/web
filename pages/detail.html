@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>축제 상세페이지</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -10,26 +11,29 @@
     }
   </style>
 </head>
-<body class="bg-[#f5f9ff] px-24 py-10">
+<body class="bg-[#f5f9ff] px-4 sm:px-6 md:px-12 lg:px-24 py-10">
 
   <!-- 상단 헤더 -->
-  <div class="flex justify-end items-center mb-6">
-    <h1 class="text-2xl font-bold text-[#649BFF] mr-3">AnywAI</h1>
-    <button onclick="location.href='../index.html'"  class="text-sm bg-white px-4 py-2 rounded-full shadow hover:bg-gray-100">Back</button>
+  <div class="flex flex-wrap justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-[#649BFF]">AnywAI</h1>
+    <button onclick="location.href='../index.html'"
+      class="text-sm bg-white px-4 py-2 rounded-full shadow hover:bg-gray-100 mt-4 sm:mt-0">
+      Back
+    </button>
   </div>
 
   <!-- 축제 / 지도 -->
-  <div class="grid grid-cols-2 gap-8 mb-8">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
     <!-- 축제 카드 -->
     <div>
       <p class="text-sm text-[#649BFF] font-semibold mb-1">축제</p>
       <div class="bg-white p-5 rounded-xl shadow">
-        <img src="../assets/images/ex.png" alt="이천쌀문화축제" class="rounded-lg mb-4">
+        <img src="../assets/images/ex.png" alt="이천쌀문화축제" class="rounded-lg mb-4 w-full">
         <h2 class="text-lg font-bold mb-1">석촌 호수 라프라스</h2>
         <p class="text-sm mb-1">날짜: 2024.05.05</p>
         <p class="text-sm mb-1">장소: 서울시 송파구 잠실동동</p>
         <p class="text-sm mb-3">축제 설명: 귀여운 라프라스와 피카츄가 석촌호수에 등장?!</p>
-        <button class="bg-[#4D8AF0] text-white px-4 py-2 rounded-md text-sm hover:bg-[#3C7CDE]">
+        <button class="bg-[#4D8AF0] text-white px-4 py-2 rounded-md text-sm hover:bg-[#3C7CDE] w-full sm:w-auto">
           홈페이지 ➜
         </button>
       </div>
@@ -39,15 +43,17 @@
     <div>
       <p class="text-sm text-[#649BFF] font-semibold mb-1">지도</p>
       <div class="bg-white p-5 rounded-xl shadow">
-        <h2 class="text-sm font-bold mb-2">주소: 서울시 송파구 </h2>
-        <img src="map-thumbnail.png" alt="지도" class="rounded-lg mb-4">
-        <div class="flex gap-4 text-sm text-[#3374e0] font-semibold mb-3">
+        <h2 class="text-sm font-bold mb-2">주소: 서울시 송파구</h2>
+        <img src="map-thumbnail.png" alt="지도" class="rounded-lg mb-4 w-full">
+        <div class="flex flex-wrap gap-4 text-sm text-[#3374e0] font-semibold mb-3">
           <a href="#" class="hover:underline">대중교통</a>
           <a href="#" class="hover:underline">자가용</a>
         </div>
-        <div class="flex gap-2">
-          <button class="bg-[#e2e8f0] text-sm px-3 py-2 rounded-md hover:bg-[#d1d5db]">장소 저장</button>
-          <button class="bg-[#4D8AF0] text-white px-4 py-2 rounded-md text-sm hover:bg-[#3C7CDE]">
+        <div class="flex flex-wrap gap-2">
+          <button class="bg-[#e2e8f0] text-sm px-3 py-2 rounded-md hover:bg-[#d1d5db] w-full sm:w-auto">
+            장소 저장
+          </button>
+          <button class="bg-[#4D8AF0] text-white px-4 py-2 rounded-md text-sm hover:bg-[#3C7CDE] w-full sm:w-auto">
             길찾기 ➜
           </button>
         </div>
@@ -56,7 +62,7 @@
   </div>
 
   <!-- 축제 소개 -->
-  <div class="bg-white p-10 rounded-xl shadow-md mb-8">
+  <div class="bg-white p-6 sm:p-10 rounded-xl shadow-md mb-8">
     <h2 class="text-base font-bold mb-6">축제 소개</h2>
     <p class="text-sm font-semibold mb-2">주요 프로그램</p>
     <p class="text-sm font-semibold">참고사항</p>
@@ -65,27 +71,28 @@
   <!-- 추천 인근 여행지 -->
   <div>
     <h2 class="text-sm font-bold text-[#649BFF] mb-4">추천 인근 여행지</h2>
-    <div class="grid grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       <div class="bg-white p-4 rounded-xl shadow-md text-center">
         <div class="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
-        <button class="border border-gray-400 px-4 py-2 rounded text-sm hover:bg-gray-100">
+        <button class="border border-gray-400 px-4 py-2 rounded text-sm hover:bg-gray-100 w-full">
           바로가기 ➜
         </button>
       </div>
       <div class="bg-white p-4 rounded-xl shadow-md text-center">
         <div class="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
-        <button class="border border-gray-400 px-4 py-2 rounded text-sm hover:bg-gray-100">
+        <button class="border border-gray-400 px-4 py-2 rounded text-sm hover:bg-gray-100 w-full">
           바로가기 ➜
         </button>
       </div>
       <div class="bg-white p-4 rounded-xl shadow-md text-center">
         <div class="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
-        <button class="border border-gray-400 px-4 py-2 rounded text-sm hover:bg-gray-100">
+        <button class="border border-gray-400 px-4 py-2 rounded text-sm hover:bg-gray-100 w-full">
           바로가기 ➜
         </button>
       </div>
     </div>
   </div>
+
   <script src="../js/config.js"></script>
   <script src="../js/authGuard.js"></script>
 </body>
