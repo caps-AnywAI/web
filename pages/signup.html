@@ -3,48 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <title>회원가입</title>
-  <link rel="stylesheet" href="../assets/css/signup.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Pretendard', sans-serif; }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
-<body>
-  <div class="page">
-    <div class="signup-box">
-      <div class="header">
-        <div class="logo">AnywAI</div>
-        <hr>
-      </div>
-
-      <div class="content">
-        <div class="left">
-          <h2>Create an<br>account</h2>
-          <img src="../assets/images/mascot.png" alt="캐릭터">
-        </div>
-
-        <div class="right">
-          <div class="input-group">
-            <input type="text" id="user-id" placeholder="아이디">
-            <button class="check-btn">중복확인</button>
-          </div>
-          <div class="input-row">
-            <input type="password" id="user-password" placeholder="비밀번호">
-            <input type="password" id="user-password-confirm" placeholder="비밀번호 확인">
-          </div>
-          <input type="text" id="username" placeholder="이름">
-          <input type="text" id="phone" placeholder="핸드폰">
-          <input type="email" id="email" placeholder="이메일">
-
-          <button class="submit-btn" id="signup-btn">회원가입</button>
-
-          <div class="checkbox">
-            <input type="checkbox" id="agree">
-            <label for="agree">개인정보 수집 및 이용에 동의합니다.</label>
-          </div>
-          
-        </div>
-      </div>
+<body class="bg-[#eaf4ff] min-h-screen flex items-center justify-center">
+   <div class="bg-white rounded-2xl shadow-lg w-full max-w-xl mx-2 md:mx-8 px-6 md:px-12 py-10 flex flex-col gap-8">
+    <!-- 헤더 & 타이틀 -->
+    <div class="text-center">
+      <div class="font-extrabold text-xl text-[#003366] mb-2">AnywAI</div>
+      <hr class="border-t border-gray-200 mb-4">
+      <h2 class="text-2xl font-bold text-gray-800 leading-snug">Create an<br>account</h2>
     </div>
+    <!-- 폼 -->
+    <form class="flex flex-col gap-4 w-full" autocomplete="off">
+      <!-- 아이디 + 중복확인 -->
+      <div class="flex flex-wrap gap-2">
+        <input type="text" id="user-id" placeholder="아이디"
+               class="flex-grow min-w-0 px-4 py-2 rounded-lg border border-gray-200 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-200" />
+        <button type="button"
+                class="shrink-0 whitespace-nowrap px-4 py-2 bg-blue-400 text-white rounded-md text-sm font-semibold hover:bg-blue-500">
+          중복확인
+        </button>
+      </div>
+      <!-- 비밀번호 / 확인 -->
+     <div class="flex flex-col sm:flex-row gap-2">
+       <input type="password" id="user-password" placeholder="비밀번호"
+        class="flex-1 w-full min-w-0 px-4 py-2 rounded-lg border border-gray-200 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-200" />
+       <input type="password" id="user-password-confirm" placeholder="비밀번호 확인"
+         class="flex-1 w-full min-w-0 px-4 py-2 rounded-lg border border-gray-200 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-200" />
+     </div>
+      <!-- 기타 입력 -->
+      <input type="text" id="username" placeholder="이름"
+             class="px-4 py-2 rounded-lg border border-gray-200 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-200" />
+      <input type="text" id="phone" placeholder="핸드폰"
+             class="px-4 py-2 rounded-lg border border-gray-200 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-200" />
+      <input type="email" id="email" placeholder="이메일"
+             class="px-4 py-2 rounded-lg border border-gray-200 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-200" />
+      <!-- 회원가입 버튼 -->
+      <button type="submit" id="signup-btn"
+              class="w-full py-3 bg-blue-400 text-white rounded-lg font-bold hover:bg-blue-500 transition">
+        회원가입
+      </button>
+      <!-- 동의 체크박스 -->
+      <div class="flex items-center gap-2 text-sm text-gray-600">
+        <input type="checkbox" id="agree" class="w-4 h-4">
+        <label for="agree">개인정보 수집 및 이용에 동의합니다.</label>
+      </div>
+    </form>
   </div>
-
   <script src="../js/config.js"></script>
   <script src="../js/signup.js"></script>
 </body>
