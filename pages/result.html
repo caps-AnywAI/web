@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>추천 결과 - AnywAI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>추천 결과</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#eaf3ff] font-sans py-10 px-6 min-h-screen">
+<body class="bg-[#F6F9FF] min-h-screen font-sans">
 
-  <!-- 상단 로고 -->
-  <header class="w-full flex justify-end mb-6">
-    <h1 class="text-xl font-bold text-[#60a5fa]">AnywAI</h1>
-  </header>
-
-  <!-- 결과 카드 -->
-  <div class="max-w-4xl mx-auto bg-white rounded-2xl p-10 shadow-lg text-center">
-    <h2 class="text-2xl font-bold text-[#60a5fa] mb-6">🎉 당신을 위한 맞춤 추천 결과</h2>
-
-    <!-- 선택된 응답 목록 -->
-    <ul id="answer-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 text-base mb-8">
-      <!-- 자바스크립트로 채워짐 -->
-    </ul>
-
-    <!-- 추천 요약 카드 -->
-    <div id="recommendation" class="bg-[#add6ff] text-white rounded-xl p-6 shadow-md mb-10">
-      <h3 class="text-xl font-semibold mb-2">추천 유형:</h3>
-      <p id="summary-text" class="text-lg font-light">분석 중...</p>
+  <div class="max-w-[1440px] mx-auto pb-24 px-4 sm:px-6 lg:px-8">
+    
+    <!-- 상단 헤더 -->
+    <div class="flex justify-end items-center p-5 mb-6">
+      <h1 class="text-2xl font-bold text-[#649BFF] mr-3">AnywAI</h1>
+      <button onclick="location.href='../index.html'" class="text-sm bg-white px-4 py-2 rounded-full shadow hover:bg-gray-100">
+        Back
+      </button>
     </div>
 
-    <!-- 버튼 -->
-    <div class="flex justify-center gap-4">
-      <button onclick="location.href='../index.html'"
-              class="bg-white border border-[#60a5fa] text-[#60a5fa] hover:bg-[#f0f8ff] px-6 py-2 rounded-full font-semibold">
-        홈으로
-      </button>
+    <!-- 제목 및 해시태그 -->
+    <header>
+      <h2 class="text-center mt-16 text-2xl sm:text-3xl md:text-4xl font-semibold text-[#373737]">
+        당신의 선호도를 분석한 결과,<br><strong>이런 축제가 잘 어울려요!</strong>
+      </h2>
+      <div id="tag-container" class="flex justify-center flex-wrap gap-2 my-8"></div>
+    </header>
+
+    <!-- 축제 카드 리스트 -->
+    <div id="festival-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+      <!-- JS에서 카드 생성 -->
+    </div>
+
+    <!-- 다시하기 버튼 -->
+    <div class="flex justify-center mt-16">
       <button onclick="location.href='balance.html'"
-              class="bg-[#60a5fa] hover:bg-[#3b82f6] text-white px-6 py-2 rounded-full font-semibold">
-        다시 하기
+              class="bg-white border-2 border-[#D9D9D9] rounded-full px-8 py-4 text-lg text-[#6D6D6D] hover:shadow hover:bg-gray-100">
+        RETRY
       </button>
     </div>
+
   </div>
-  <script src="../js/config.js"></script>
-  <script src="../js/authGuard.js"></script>
+
   <script src="../js/result.js"></script>
+  <script src="../js/authGuard.js"></script>
 </body>
 </html>
