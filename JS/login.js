@@ -2,7 +2,6 @@
 
 // config.js 에서 불러온 BASE_URL
 // export const BASE_URL = "http://localhost:8080";
-import { BASE_URL } from "./config.js";
 
 const loginBtn = document.getElementById("login-btn");
 const idInput  = document.getElementById("user-id");
@@ -16,21 +15,30 @@ loginBtn.addEventListener("click", () => {
     return alert("아이디와 비밀번호를 입력해주세요.");
   }
 
-  // GET 방식이 명세라면, body 대신 쿼리스트링으로 전송
-  const params = new URLSearchParams({ id: userId, password: userPw });
-
-  fetch(`${BASE_URL}/api/v1/auth/login?${params.toString()}`, {
-    method: "GET",
+  // 로그인 요청을 백엔드로 보냄
+  fetch(`${BASE_URL}/api/v1/auth/login`, {
+    method: "POST",
     headers: {
-      "Content-Type": "application/json" // GET에도 넣어도 무방
-    }
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      id: userId,
+      password: userPw
+    })
   })
     .then(async (res) => {
       if (!res.ok) throw new Error("로그인 실패 (서버 응답 오류)");
 
       // 백엔드가 응답 헤더에 토큰을 담아 보내면 꺼내서 저장
-      const token = res.headers.get("authorization");
+      const authorizationHeader = res.headers.get("Authorization");
+      if (!authorizationHeader) {
+        throw new Error("로그인 실패: 토큰이 없습니다.");
+      }
+      const token = authorizationHeader ? authorizationHeader.split(" ")[1] : null;
       const result = await res.json();
+
+      console.log("로그인 응답:", result);
+      console.log("토큰:", token);
 
       if (!result.success || !token) {
         throw new Error("로그인 실패: 아이디 또는 비밀번호를 확인해주세요.");

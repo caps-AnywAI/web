@@ -1,5 +1,4 @@
 // mypage.js
-import { BASE_URL } from "./config.js"; // "http://localhost:8080"
 
 document.addEventListener("DOMContentLoaded", () => {
   const token  = localStorage.getItem("authToken");
@@ -16,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": token      // 로그인 때 받은 헤더 값: "Bearer ... 토큰"
+      "Authorization": `Bearer ${token}`      // 로그인 때 받은 헤더 값: "Bearer ... 토큰"
     }
   })
     .then(async res => {
@@ -37,9 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       // data: { id, name, phone, email, ... }
       document.getElementById("user-name").textContent  = `${data.name} 님`;
-      document.getElementById("user-id").textContent    = data.id;
-      document.getElementById("user-phone").textContent = data.phone;
-      document.getElementById("user-email").textContent = data.email;
+      //document.getElementById("user-id").textContent    = data.id;
+      //document.getElementById("user-phone").textContent = data.phone;
+      //document.getElementById("user-email").textContent = data.email;
     })
     .catch(err => {
       console.error(err);

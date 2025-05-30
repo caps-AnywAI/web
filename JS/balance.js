@@ -132,3 +132,7 @@ function nextStep() {
     });
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderStep();
+});

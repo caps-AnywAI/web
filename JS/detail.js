@@ -1,5 +1,4 @@
 // detail.js
-import { BASE_URL } from "./config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // 1) URL에서 festivalId 뽑기
@@ -15,9 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch(`${BASE_URL}/api/v1/festival/${festivalId}`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json"
-      // 인증이 필요하다면:
-      // "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("authToken")}`
     }
   })
     .then(res => {
