@@ -41,6 +41,19 @@ document.addEventListener("DOMContentLoaded", () => {
       pEls[1].textContent = `장소: ${data.address}`;
       pEls[2].textContent = `축제 설명: ${data.description || "-"}`;
 
+      document.getElementById("introduce").textContent = data.introduce ?? "내용 없음";
+
+  // 주요 프로그램 삽입
+  document.getElementById("program").textContent = data.program ?? "내용 없음";
+
+  // 참고사항 처리
+  if (data.info) {
+    document.getElementById("info").textContent = data.info;
+  } else {
+    document.getElementById("info-label").style.display = "none";
+    document.getElementById("info").style.display = "none";
+  }
+
       if (data.homepageUrl) {
         btnEl.textContent = "홈페이지 ➜";
         btnEl.onclick = () => window.open(data.homepageUrl, "_blank");
