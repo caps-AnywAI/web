@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>프로필 수정</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#ECF4FF] min-h-screen">
+  <!-- 상단 바 -->
+  <div class="w-full flex items-center justify-between px-6 py-3 bg-[#60B7FF] shadow-sm">
+  <!-- AnywAI 누르면 index.html로 이동 -->
+  <a href="../index.html" class="text-2xl font-extrabold text-white">
+    AnywAI
+  </a>
+
+  <!-- Back 누르면 mypage.html로 이동 -->
+  <button
+    onclick="window.location.href='mypage.html'"
+    class="bg-white text-[#60B7FF] text-sm font-semibold px-4 py-1 rounded-full shadow hover:bg-gray-100 transition"
+  >
+    Back
+  </button>
+</div>
+
+
+  <!-- 메인 콘텐츠 (조금 위로 올림) -->
+  <div class="flex items-start justify-center min-h-screen pt-20 p-6">
+    <div
+      class="bg-white rounded-3xl shadow-lg p-8 text-center
+             w-full max-w-lg max-h-[80vh] aspect-[4/5] overflow-auto"
+    >
+      <h1 class="text-2xl font-bold text-gray-700 mb-6">프로필 수정</h1>
+
+      <!-- 프로필 이미지 -->
+      <div class="flex flex-col items-center mb-6">
+        <div id="preview-container" class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-4xl text-gray-500 overflow-hidden mb-3 relative">
+          <span id="default-icon">👤</span>
+          <img id="preview-img" class="hidden object-cover w-full h-full" />
+          <!-- 삭제 버튼 위치 조절 -->
+          <button id="deleteImgBtn" title="사진 삭제" class="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600 transition hidden">
+            ×
+          </button>
+        </div>
+        <label for="profile-upload" class="cursor-pointer bg-[#D6EEFF] text-[#60B7FF] px-4 py-2 text-sm rounded-full hover:bg-[#b6e2ff] transition mb-2">
+          사진 선택
+        </label>
+        <input type="file" id="profile-upload" accept="image/*" class="hidden" />
+      </div>
+
+      <!-- 닉네임 변경 -->
+      <div class="mb-4 text-left">
+        <button onclick="toggleSection('nicknameSection')" class="w-full bg-[#D6EEFF] text-[#60B7FF] font-medium py-2 rounded-xl hover:bg-[#b6e2ff] transition">
+          닉네임 변경
+        </button>
+        <div id="nicknameSection" class="mt-3 hidden">
+          <input type="text" placeholder="새 닉네임" class="w-full p-3 border border-gray-300 rounded-xl mt-2 focus:outline-none focus:ring-2 focus:ring-[#60B7FF]">
+        </div>
+      </div>
+
+      <!-- 비밀번호 변경 -->
+      <div class="mb-6 text-left">
+        <button onclick="toggleSection('passwordSection')" class="w-full bg-[#D6EEFF] text-[#60B7FF] font-medium py-2 rounded-xl hover:bg-[#b6e2ff] transition">
+          비밀번호 변경
+        </button>
+        <div id="passwordSection" class="mt-3 hidden space-y-3">
+          <input type="password" placeholder="현재 비밀번호" class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#60B7FF]">
+          <input type="password" placeholder="새 비밀번호" class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#60B7FF]">
+          <input type="password" placeholder="비밀번호 확인" class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#60B7FF]">
+        </div>
+      </div>
+
+      <!-- 저장 버튼 -->
+      <button id="saveBtn" class="w-full bg-[#60B7FF] text-white font-semibold py-3 rounded-xl hover:bg-[#4aa6ed] transition">
+        저장
+      </button>
+
+      <!-- 회원탈퇴 -->
+      <div class="mt-6">
+        <button id="withdrawBtn" class="w-full bg-red-400 text-white py-2 rounded-xl hover:bg-red-500 transition">
+          회원탈퇴
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 회원탈퇴 확인 모달 -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg p-6 max-w-sm w-full text-center shadow-lg">
+      <p class="text-lg font-semibold mb-4">정말 탈퇴하시겠습니까?</p>
+      <div class="flex justify-center space-x-4">
+        <button id="confirmWithdraw" class="bg-red-500 text-white px-5 py-2 rounded hover:bg-red-600 transition">네, 탈퇴합니다</button>
+        <button id="cancelWithdraw" class="bg-gray-300 px-5 py-2 rounded hover:bg-gray-400 transition">취소</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/profile-edit.js"></script>
+  
+</body>
+</html>
