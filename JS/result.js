@@ -45,8 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
     .then(res => {
-      if (!res.ok) throw new Error("추천 목록을 불러올 수 없습니다.");
-      return res.json();
+      if (!res.ok) {alert("선호도 분석 결과가 없습니다.\n추천을 위해서는 테마를 선택해주세요.");
+      return location.href = "balance.html";
+      } else {
+    return res.json(); // 성공 시 반환
+      }
     })
     .then(({ success, data, message }) => {
       if (!success) {

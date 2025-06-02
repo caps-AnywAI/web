@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = e.target.closest("a, button");
     if (!target) return;
 
+<<<<<<< Updated upstream
 
     // 2) whitelist 에 있는 ID는 로그인 체크 제외
     if (target.id && whitelist.includes(target.id)) return;
@@ -20,12 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       // 로그인 된 상태 → 추천 페이지로 이동
       location.href = "pages/result.html";
+=======
+    // 2) whitelist 에 있는 ID는 로그인 체크 제외
+    if (target.id && whitelist.includes(target.id)) return;
+
+    
+    // 로그인 안 된 상태 → 로그인 페이지로 이동
+    if(!token) {alert("로그인 후 이용 가능합니다.");
+      location.href = "pages/login.html";
+>>>>>>> Stashed changes
       return;
     }
 
-    // 4) 나머지 클릭(로그인 필요 페이지) → 로그인 페이지로
-    e.preventDefault();
-    alert("로그인 후 이용 가능합니다.");
-    location.href = "pages/login.html";
+    // 3) AI 추천 버튼 클릭 분기
+    if (target.id === "recommend-btn") {
+
+      // 로그인 된 상태 → 추천 페이지로 이동
+      e.preventDefault();
+      location.href = "pages/result.html";
+      return;
+    }
   });
 });

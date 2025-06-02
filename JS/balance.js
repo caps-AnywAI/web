@@ -28,7 +28,7 @@ const questions = [
     step: 4,
     title: "먹는 즐거움과 새로운 경험 중 당신의 선택은?",
     options: [
-      { value: "spectating ",       label: "관찰",   img: "../assets/images/free-icon-observation-2196220.png" },
+      { value: "spectating",       label: "관찰",   img: "../assets/images/free-icon-observation-2196220.png" },
       { value: "experience", label: "경험",   img: "../assets/images/free-icon-vacation-7058066.png" }
     ]
   },

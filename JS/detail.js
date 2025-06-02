@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("introduce").textContent = data.introduce ?? "내용 없음";
 
   // 주요 프로그램 삽입
-  document.getElementById("program").textContent = data.program ?? "내용 없음";
+  document.getElementById("program").innerHTML = data.program ?? "내용 없음";
 
   // 참고사항 처리
   if (data.info) {
