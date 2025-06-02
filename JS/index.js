@@ -6,8 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = e.target.closest("a, button");
     if (!target) return;
 
-<<<<<<< Updated upstream
-
     // 2) whitelist 에 있는 ID는 로그인 체크 제외
     if (target.id && whitelist.includes(target.id)) return;
 
@@ -21,15 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       // 로그인 된 상태 → 추천 페이지로 이동
       location.href = "pages/result.html";
-=======
-    // 2) whitelist 에 있는 ID는 로그인 체크 제외
-    if (target.id && whitelist.includes(target.id)) return;
-
-    
-    // 로그인 안 된 상태 → 로그인 페이지로 이동
-    if(!token) {alert("로그인 후 이용 가능합니다.");
-      location.href = "pages/login.html";
->>>>>>> Stashed changes
       return;
     }
 
