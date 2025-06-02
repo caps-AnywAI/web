@@ -66,3 +66,54 @@ document.addEventListener("DOMContentLoaded", () => {
       alert(err.message);
     });
 });
+
+// 인근 여행지 정보 불러오기
+fetch(`${BASE_URL}/api/v1/festival/${festivalId}/nearby`, {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+  }
+})
+  .then(res => {
+    if (!res.ok) throw new Error("인근 여행지 정보를 불러올 수 없습니다.");
+    return res.json();
+  })
+  .then(({ success, data: nearbyList }) => {
+    if (!success || !Array.isArray(nearbyList)) return;
+
+    const container = document.querySelector('.lg\\:grid-cols-4');
+    container.innerHTML = "";
+
+    nearbyList.forEach(item => {
+      const cardDiv = document.createElement("div");
+      cardDiv.className = "bg-white rounded-lg shadow-md overflow-hidden";
+
+      const imgEl = document.createElement("img");
+      imgEl.src = item.imageUrl;
+      imgEl.alt = item.name;
+      imgEl.className = "w-full h-40 object-cover";
+
+      const bodyDiv = document.createElement("div");
+      bodyDiv.className = "p-4";
+
+      const titleEl = document.createElement("h3");
+      titleEl.className = "text-md font-semibold mb-1";
+      titleEl.textContent = item.name;
+
+      const dateEl = document.createElement("p");
+      dateEl.className = "text-sm text-gray-600 mb-1";
+      dateEl.textContent = `📅 ${item.date}`;
+
+      const locationEl = document.createElement("p");
+      locationEl.className = "text-sm text-gray-600";
+      locationEl.textContent = `🚩 ${item.location}`;
+
+      bodyDiv.append(titleEl, dateEl, locationEl);
+      cardDiv.append(imgEl, bodyDiv);
+      container.appendChild(cardDiv);
+    });
+  })
+  .catch(err => {
+    console.error(err);
+  });
