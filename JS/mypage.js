@@ -44,7 +44,66 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error(err);
       alert(err.message || "프로필을 불러오는 중 오류가 발생했습니다.");
     });
+  
+     // — 북마크 조회 및 렌더링
+  const countEl = document.getElementById("bookmark-count");
+  const listEl  = document.getElementById("bookmark-list");
 
+  fetch(`${BASE_URL}/api/v1/bookmarks`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("북마크 정보를 불러올 수 없습니다.");
+      return res.json();
+    })
+    .then(({ success, data }) => {
+      // 초기화
+      listEl.innerHTML = "";
+
+      if (!success || !Array.isArray(data) || data.length === 0) {
+        countEl.textContent = "0";
+        listEl.innerHTML = `
+          <li class="text-center text-gray-400">
+            아직 저장한 축제가 없습니다.
+          </li>
+        `;
+        return;
+      }
+
+      // 카운트 갱신
+      countEl.textContent = data.length;
+
+      // 리스트 렌더링
+      data.forEach(item => {
+        const li = document.createElement("li");
+        li.className = "flex justify-between items-center";
+
+        li.innerHTML = `
+          <div>
+            <p class="font-semibold">${item.title}</p>
+            <p class="text-xs text-gray-500">
+              📅 ${item.startDate} – ${item.endDate}
+            </p>
+          </div>
+          <button
+            onclick="location.href='detail.html?id=${item.id}'"
+            class="text-sm text-blue-500 hover:underline"
+          >
+            상세 보기
+          </button>
+        `;
+        listEl.appendChild(li);
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      // 실패 시 placeholder 유지
+    });
+    
   // — 로그아웃 버튼
   const logoutBtn = document.getElementById("logout-btn");
   if (logoutBtn) {
