@@ -68,42 +68,65 @@
 
 
     <!-- 축제 인근 여행지 거리순-->
-   <div class="bg-white p-6 rounded-xl shadow-md mb-8">
+   <!-- 축제 인근 여행지 거리순 -->
+<div class="bg-white p-6 rounded-xl shadow-md mb-8">
   <h2 class="text-lg font-bold text-[#649BFF] mb-4">축제 인근 여행지 거리순</h2>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     
+    <!-- 여행지 카드 반복 예시 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="" alt="여행지 1 사진" class="w-full h-40 object-cover">
       <div class="p-4">
         <h3 class="text-md font-semibold mb-1">여행지 1</h3>
-        <p class="text-sm text-gray-600 mb-1">📅 07.20 – 07.23</p>
+        <!-- 주소가 있을 때만 보여줄 링크 -->
+        <a id="place1-address" 
+           href="#" 
+           target="_blank" 
+           class="text-sm text-blue-500 hover:underline hidden mb-1 block">
+          🗺️ 바로가기
+        </a>
         <p class="text-sm text-gray-600">🚩 부산</p>
       </div>
     </div>
-    
+
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="" alt="여행지 2 사진" class="w-full h-40 object-cover">
       <div class="p-4">
         <h3 class="text-md font-semibold mb-1">여행지 2</h3>
-        <p class="text-sm text-gray-600 mb-1">📅 07.20 – 07.23</p>
+        <a id="place2-address" 
+           href="#" 
+           target="_blank" 
+           class="text-sm text-blue-500 hover:underline hidden mb-1 block">
+          🗺️ 바로가기
+        </a>
         <p class="text-sm text-gray-600">🚩 부산</p>
       </div>
     </div>
-    
+
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="" alt="여행지 3 사진" class="w-full h-40 object-cover">
       <div class="p-4">
         <h3 class="text-md font-semibold mb-1">여행지 3</h3>
-        <p class="text-sm text-gray-600 mb-1">📅 07.20 – 07.23</p>
+        <a id="place3-address" 
+           href="#" 
+           target="_blank" 
+           class="text-sm text-blue-500 hover:underline hidden mb-1 block">
+          🗺️ 바로가기
+        </a>
         <p class="text-sm text-gray-600">🚩 부산</p>
       </div>
     </div>
-    
+
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="" alt="여행지 4 사진" class="w-full h-40 object-cover">
       <div class="p-4">
         <h3 class="text-md font-semibold mb-1">여행지 4</h3>
-        <p class="text-sm text-gray-600 mb-1">📅 07.20 – 07.23</p>
+        <a id="place4-address" 
+           href="#" 
+           target="_blank" 
+           class="text-sm text-blue-500 hover:underline hidden mb-1 block">
+          🗺️ 바로가기
+        </a>
         <p class="text-sm text-gray-600">🚩 부산</p>
       </div>
     </div>
@@ -113,8 +136,8 @@
 
 
 
-  <script src="../js/config.js"></script>
-  <script src="../js/detail.js"></script>
+
+ 
 
 </body>
 </html>

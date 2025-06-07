@@ -66,54 +66,93 @@ document.addEventListener("DOMContentLoaded", () => {
       alert(err.message);
     });
 
-  // 인근 여행지 정보 불러오기
-  fetch(`${BASE_URL}/api/v1/recommendation/places/${festivalId}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("authToken")}`
-    }
-  })
+ 
+// 북마크 기능    
+const buttons = card.querySelectorAll("button");
+  const saveBtn = buttons[1]; // [0]이 홈페이지, [1]이 장소 저장
+  saveBtn.addEventListener("click", () => {
+    fetch(`${BASE_URL}/api/v1/bookmarks`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+      },
+      body: JSON.stringify({ placeId: festivalId })
+    })
     .then(res => {
-      if (!res.ok) throw new Error("인근 여행지 정보를 불러올 수 없습니다.");
+      if (!res.ok) throw new Error("북마크 추가에 실패했습니다.");
       return res.json();
     })
-    .then(({ success, data: nearbyList }) => {
-      if (!success || !Array.isArray(nearbyList)) return;
-
-      const container = document.querySelector('.lg\\:grid-cols-4');
-      container.innerHTML = "";
-
-      nearbyList.forEach(item => {
-        const cardDiv = document.createElement("div");
-        cardDiv.className = "bg-white rounded-lg shadow-md overflow-hidden";
-
-        const imgEl = document.createElement("img");
-        imgEl.src = item.imageUrl;
-        imgEl.alt = item.title;
-        imgEl.className = "w-full h-40 object-cover";
-
-        const bodyDiv = document.createElement("div");
-        bodyDiv.className = "p-4";
-
-        const titleEl = document.createElement("h3");
-        titleEl.className = "text-md font-semibold mb-1";
-        titleEl.textContent = item.title;
-
-        const dateEl = document.createElement("p");
-        dateEl.className = "text-sm text-gray-600 mb-1";
-        dateEl.textContent = `📅 ${item.date}`;
-
-        const locationEl = document.createElement("p");
-        locationEl.className = "text-sm text-gray-600";
-        locationEl.textContent = `🚩 ${item.location}`;
-
-        bodyDiv.append(titleEl, dateEl, locationEl);
-        cardDiv.append(imgEl, bodyDiv);
-        container.appendChild(cardDiv);
-      });
+    .then(({ success }) => {
+      if (success) {
+        alert("장소가 북마크에 추가되었습니다.");
+        saveBtn.textContent = "저장 완료";
+        saveBtn.disabled = true;
+      } else {
+        alert("이미 저장되었거나 오류가 발생했습니다.");
+      }
     })
     .catch(err => {
       console.error(err);
+      alert("북마크 중 오류가 발생했습니다.");
     });
+  });
+
+ // 인근 여행지 정보 불러오기
+fetch(`${BASE_URL}/api/v1/recommendation/places/${festivalId}`, {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+  }
+})
+  .then(res => {
+    if (!res.ok) throw new Error("인근 여행지 정보를 불러올 수 없습니다.");
+    return res.json();
+  })
+  .then(({ success, data: nearbyList }) => {
+    if (!success || !Array.isArray(nearbyList)) return;
+
+    const container = document.querySelector('.lg\\:grid-cols-4');
+    container.innerHTML = "";
+
+    nearbyList.forEach(item => {
+      const cardDiv = document.createElement("div");
+      cardDiv.className = "bg-white rounded-lg shadow-md overflow-hidden";
+
+      const imgEl = document.createElement("img");
+      imgEl.src = item.imageUrl;
+      imgEl.alt = item.title;
+      imgEl.className = "w-full h-40 object-cover";
+
+      const bodyDiv = document.createElement("div");
+      bodyDiv.className = "p-4";
+
+      const titleEl = document.createElement("h3");
+      titleEl.className = "text-md font-semibold mb-1";
+      titleEl.textContent = item.title;
+
+      // homepageUrl이 있을 때만 링크 생성
+      if (item.homepageUrl) {
+        const linkEl = document.createElement("a");
+        linkEl.href = item.homepageUrl;
+        linkEl.target = "_blank";
+        linkEl.className = "text-sm text-blue-500 hover:underline mb-1 block";
+        linkEl.textContent = "🗺️ 바로가기";
+        bodyDiv.append(linkEl);
+      }
+
+      const locationEl = document.createElement("p");
+      locationEl.className = "text-sm text-gray-600";
+      locationEl.textContent = `🚩 ${item.location}`;
+
+      bodyDiv.append(titleEl, locationEl);
+      cardDiv.append(imgEl, bodyDiv);
+      container.appendChild(cardDiv);
+    });
+  })
+  .catch(err => {
+    console.error(err);
+  });
+
 });
