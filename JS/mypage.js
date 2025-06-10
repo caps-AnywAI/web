@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const countEl = document.getElementById("bookmark-count");
   const listEl  = document.getElementById("bookmark-list");
 
-  fetch(`${BASE_URL}/api/v1/bookmarks`, {
+  fetch(`${BASE_URL}/api/v1/members/me/like`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // 초기화
       listEl.innerHTML = "";
 
-      if (!success || !Array.isArray(data) || data.length === 0) {
+      if (!success || !Array.isArray(data.likedPosts) || data.totalCount === 0) {
         countEl.textContent = "0";
         listEl.innerHTML = `
           <li class="text-center text-gray-400">
@@ -75,10 +75,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // 카운트 갱신
-      countEl.textContent = data.length;
+      countEl.textContent = data.totalCount;
+      const likedPosts = data.likedPosts;
 
       // 리스트 렌더링
-      data.forEach(item => {
+      likedPosts.forEach(item => {
         const li = document.createElement("li");
         li.className = "flex justify-between items-center";
 

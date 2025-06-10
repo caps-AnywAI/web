@@ -1,80 +1,59 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <title>AnywAI - 축제 추천 메인페이지</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body class="bg-[#f5f9ff] min-h-screen font-sans">
   <!-- 상단 네비게이션 -->
   <header class="bg-[#58abf7] text-white px-4 py-4 flex flex-wrap justify-between items-center">
-  <div class="text-2xl font-extrabold">AnywAI</div>
-  <nav class="flex flex-wrap items-center gap-2 text-sm">
-    <a href="#" class="hover:underline">리뷰</a>
-    <a href="#" class="hover:underline">검색</a>
-    <a href="pages/bookmark.html" class="hover:underline">북마크</a>
-    <a href="pages/mypage.html" class="hover:underline">마이페이지</a>
-    <div id="auth-buttons"></div>
-  </nav>
-</header>
+    <div class="text-2xl font-extrabold">AnywAI</div>
+    <nav class="flex flex-wrap items-center gap-2 text-sm">
+      <a href="#" class="hover:underline">리뷰</a>
+      <a href="#" class="hover:underline">검색</a>
+      <a href="pages/bookmark.html" class="hover:underline">북마크</a>
+      <a href="pages/mypage.html" class="hover:underline">마이페이지</a>
+      <div id="auth-buttons"></div>
+    </nav>
+  </header>
 
 
   <!-- 메인 텍스트 -->
   <section class="text-center py-24 px-4">
-  <p class="text-base sm:text-lg text-gray-600">당신이 있는 곳 어디든</p>
-  <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 mt-2">그곳이 축제입니다</h1>
-</section>
+    <p class="text-base sm:text-lg text-gray-600">당신이 있는 곳 어디든</p>
+    <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 mt-2">그곳이 축제입니다</h1>
+  </section>
 
 
   <!-- 필터 입력 영역 -->
   <section class="flex justify-center mb-24 px-4">
-  <div class="bg-white flex flex-col sm:flex-row items-stretch rounded-2xl shadow-md overflow-hidden divide-y sm:divide-x sm:divide-y-0 divide-gray-200 w-full max-w-3xl">
-    <div class="flex items-center gap-2 px-4 py-3">
-  <label for="festival-date" class="text-xl cursor-pointer">📅</label>
-  <input id="festival-date" type="date" class="bg-transparent text-sm focus:outline-none cursor-pointer w-full" />
-</div>
+    <div
+      class="bg-white flex flex-col sm:flex-row items-stretch rounded-2xl shadow-md overflow-hidden divide-y sm:divide-x sm:divide-y-0 divide-gray-200 w-full max-w-3xl">
+      <div class="flex items-center gap-2 px-4 py-3">
+        <label for="festival-date" class="text-xl cursor-pointer">📅</label>
+        <input id="festival-date" type="date" class="bg-transparent text-sm focus:outline-none cursor-pointer w-full" />
+      </div>
 
-    <input type="text" placeholder="지역을 선택하세요." class="px-4 py-3 text-sm w-full focus:outline-none" />
-    <button id="recommend-btn" class="bg-[#58abf7] hover:bg-[#3c9ae7] text-white text-sm font-semibold px-6 py-3 w-full sm:w-auto">
-   AI 추천받기
-   </button>
-  </div>
-</section>
+      <input type="text" placeholder="지역을 선택하세요." class="px-4 py-3 text-sm w-full focus:outline-none" />
+      <button id="recommend-btn"
+        class="bg-[#58abf7] hover:bg-[#3c9ae7] text-white text-sm font-semibold px-6 py-3 w-full sm:w-auto">
+        AI 추천받기
+      </button>
+    </div>
+  </section>
 
 
   <!-- 축제 카드 리스트 -->
-   <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 pb-32 max-w-6xl mx-auto">
-
-
-    <!-- 카드 반복 예시 -->
-   <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-md text-center w-full">
-
-  <img src="assets/images/festival.png" alt="축제 포스터"  class="rounded-full mb-6 border w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto" />
-  <a href="pages/detail.html">
-    <button class="bg-gray-100 hover:bg-gray-200 px-4 sm:px-6 py-2 rounded-md text-sm sm:text-base">바로가기 →</button>
-  </a>
-</div>
-
-   <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-md text-center w-full">
-
-  <img src="assets/images/festival.png" alt="축제 포스터"  class="rounded-full mb-6 border w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto" />
-  <a href="pages/detail.html">
-    <button class="bg-gray-100 hover:bg-gray-200 px-4 sm:px-6 py-2 rounded-md text-sm sm:text-base">바로가기 →</button>
-  </a>
-</div>
-
-<div class="bg-white p-4 sm:p-6 rounded-2xl shadow-md text-center w-full">
-
-  <img src="assets/images/festival.png" alt="축제 포스터"  class="rounded-full mb-6 border w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto" />
-  <a href="pages/detail.html">
-    <button class="bg-gray-100 hover:bg-gray-200 px-4 sm:px-6 py-2 rounded-md text-sm sm:text-base">바로가기 →</button>
-  </a>
-</div>
-
-  </section>
+  <div id="festival-list" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- JS에서 카드 생성 -->
+  </div>
   <script src="js/auth.js"></script>
   <script src="js/index.js"></script>
 
 </body>
+
 </html>

@@ -3,7 +3,8 @@
 
 const signupBtn = document.getElementById("signup-btn");
 
-signupBtn.addEventListener("click", function () {
+signupBtn.addEventListener("click", function (event) {
+  event.preventDefault();
   const userId   = document.getElementById("user-id").value.trim();
   const userPw   = document.getElementById("user-password").value.trim();
   const userPwConfirm = document.getElementById("user-password-confirm").value.trim();
@@ -42,6 +43,11 @@ signupBtn.addEventListener("click", function () {
     body: JSON.stringify(userData)
   })
     .then(response => {
+
+    console.log("응답 상태:", response.status);
+    console.log("응답 OK?:", response.ok);
+    console.log("응답 헤더:", response.headers.get("content-type"));
+
       if (!response.ok) {
         throw new Error("서버 응답 오류");
       }

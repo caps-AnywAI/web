@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1) URL에서 festivalId 뽑기
   const params = new URLSearchParams(window.location.search);
   const festivalId = params.get("id");
+        const card = document.querySelector("div.bg-white.p-5.rounded-xl.shadow");
+      const imgEl = card.querySelector("img");
+      const titleEl = card.querySelector("h2");
+      const pEls = card.querySelectorAll("p");
+      const btnEl = card.querySelector("button");
   if (!festivalId) {
     alert("잘못된 접근입니다.");
     window.location.href = "../index.html";
@@ -27,11 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 3) DOM에 값 채우기
       // 축제 카드
-      const card = document.querySelector("div.bg-white.p-5.rounded-xl.shadow");
-      const imgEl = card.querySelector("img");
-      const titleEl = card.querySelector("h2");
-      const pEls = card.querySelectorAll("p");
-      const btnEl = card.querySelector("button");
 
       imgEl.src = data.imageUrl;
       imgEl.alt = data.title;
@@ -71,13 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
 const buttons = card.querySelectorAll("button");
   const saveBtn = buttons[1]; // [0]이 홈페이지, [1]이 장소 저장
   saveBtn.addEventListener("click", () => {
-    fetch(`${BASE_URL}/api/v1/bookmarks`, {
+    fetch(`${BASE_URL}/api/v1/festival/${festivalId}/like`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${localStorage.getItem("authToken")}`
-      },
-      body: JSON.stringify({ placeId: festivalId })
+      }
     })
     .then(res => {
       if (!res.ok) throw new Error("북마크 추가에 실패했습니다.");

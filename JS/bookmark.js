@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const listEl = document.getElementById("bookmark-list");
 
-  fetch(`${BASE_URL}/api/v1/bookmarks`, {
+  fetch(`${BASE_URL}/api/v1/members/me/like`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   .then(({ success, data }) => {
     listEl.innerHTML = "";
 
-    if (!success || !Array.isArray(data) || data.length === 0) {
+    if (!success || !Array.isArray(data.likedPosts) || data.totalCount === 0) {
       listEl.innerHTML = `
         <li class="p-6 text-center text-gray-600">
           저장된 축제가 없습니다.
@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    data.forEach(item => {
+    const likedPosts = data.likedPosts;
+
+    likedPosts.forEach(item => {
       const li = document.createElement("li");
       li.className = "border-b last:border-none";
 
